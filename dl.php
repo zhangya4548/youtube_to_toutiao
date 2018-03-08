@@ -51,7 +51,7 @@ $Conn = new Mysql();
 
 if ($filepath)
 {
-var_dump($filepath);die;
+
     //获取上传地址
     list($uploadUrl, $res, $uploadId) = getUploadUrl();
     phpLog('获取饰品地址完成');
