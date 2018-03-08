@@ -16,6 +16,7 @@ $houzui   = 'mp4';
 $name     = '';
 while (($filename = readdir($handler)) !== false)
 {
+    var_dump($filename);
     //检测指定文件
     if (substr_count($filename, $houzui))
     {
