@@ -10,7 +10,6 @@ require_once($path.DIRECTORY_SEPARATOR.'db.php');
 
 exec("cd ". $path.DIRECTORY_SEPARATOR ."  &&  chown www:www  ".$path.DIRECTORY_SEPARATOR."*", $output);
 phpLog('修改文件权限完成');
-phpLog($output);
 
 
 //循环读取目录下的所有文件
