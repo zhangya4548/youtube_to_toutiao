@@ -2,10 +2,15 @@
 set_time_limit(0);
 
 
+
 //当前目录
 $path = __DIR__;
 
 require_once($path.DIRECTORY_SEPARATOR.'db.php');
+
+exec("cd ". $path.DIRECTORY_SEPARATOR ."  &&  chown www:www  ".$path.DIRECTORY_SEPARATOR, $output);
+phpLog('修改文件权限完成');
+phpLog($res);
 
 //打开文件句柄
 $handler = opendir($path);
