@@ -8,58 +8,52 @@ $path = __DIR__;
 
 require_once($path.DIRECTORY_SEPARATOR.'db.php');
 
-
-
-
-$res = listDir($path);
-var_dump($res);
-function listDir( $dir){
-    $return = array();
-    $d = dir($dir);
-    while(FALSE !== ($item = $d->read() ))
-    {
-        if('.' ==$item || '..'==$item)
-        {
-            continue;
-        }
-        $return[] = $item;
-        //if(is_file($dir . '/' .$item))
-        //{
-        //    $return[] = $item;
-        //}
-        //elseif(is_dir($dir . '/' .$item))
-        //{
-        //    $return[$item] =listDir($dir . '/' .$item);
-        //}
-    }
-    $d->close();
-    return $return;
-}
-die;
-
 exec("cd ". $path.DIRECTORY_SEPARATOR ."  &&  chown www:www  ".$path.DIRECTORY_SEPARATOR."*", $output);
 phpLog('修改文件权限完成');
 phpLog($output);
 
-//打开文件句柄
-$handler = opendir($path);
+////打开文件句柄
+//$handler = opendir($path);
+//
+////循环读取目录下的所有文件
+//$filename = readdir($handler);
+//$houzui   = 'mp4';
+//$name     = '';
+//while (($filename = readdir($handler)) !== false)
+//{
+//    var_dump($filename);
+//    //检测指定文件
+//    if (substr_count($filename, $houzui))
+//    {
+//        $name = $filename;
+//    }
+//}
+//
+////关闭句柄
+//closedir($handler);
 
-//循环读取目录下的所有文件
-$filename = readdir($handler);
-$houzui   = 'mp4';
-$name     = '';
-while (($filename = readdir($handler)) !== false)
+
+$name   = '';
+$houzui = 'mp4';
+$d      = dir($path);
+while (false !== ($item = $d->read()))
 {
-    var_dump($filename);
-    //检测指定文件
-    if (substr_count($filename, $houzui))
+    if ('.' === $item || '..' === $item)
     {
-        $name = $filename;
+        continue;
+    }
+
+    //检测指定文件
+    if (substr_count($item, $houzui))
+    {
+        $name = $item;
     }
 }
+$d->close();
 
-//关闭句柄
-closedir($handler);
+
+var_dump($name);
+die;
 
 $filepath = '';
 
