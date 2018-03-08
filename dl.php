@@ -8,10 +8,7 @@ $path = __DIR__;
 
 require_once($path.DIRECTORY_SEPARATOR.'db.php');
 
-exec("cd ". $path.DIRECTORY_SEPARATOR ."  &&  chown www:www  ".$path.DIRECTORY_SEPARATOR, $output);
-
-var_dump("cd ". $path.DIRECTORY_SEPARATOR ."  &&  chown www:www  ".$path.DIRECTORY_SEPARATOR);die;
-
+exec("cd ". $path.DIRECTORY_SEPARATOR ."  &&  chown www:www  ".$path.DIRECTORY_SEPARATOR."*", $output);
 phpLog('修改文件权限完成');
 phpLog($res);
 
