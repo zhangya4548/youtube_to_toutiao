@@ -12,27 +12,8 @@ exec("cd ". $path.DIRECTORY_SEPARATOR ."  &&  chown www:www  ".$path.DIRECTORY_S
 phpLog('修改文件权限完成');
 phpLog($output);
 
-////打开文件句柄
-//$handler = opendir($path);
-//
-////循环读取目录下的所有文件
-//$filename = readdir($handler);
-//$houzui   = 'mp4';
-//$name     = '';
-//while (($filename = readdir($handler)) !== false)
-//{
-//    var_dump($filename);
-//    //检测指定文件
-//    if (substr_count($filename, $houzui))
-//    {
-//        $name = $filename;
-//    }
-//}
-//
-////关闭句柄
-//closedir($handler);
 
-
+//循环读取目录下的所有文件
 $name   = '';
 $houzui = 'mp4';
 $d      = dir($path);
@@ -52,8 +33,6 @@ while (false !== ($item = $d->read()))
 $d->close();
 
 
-var_dump($name);
-die;
 
 $filepath = '';
 
