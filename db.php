@@ -28,8 +28,8 @@ class Mysql
 {
     private $LocalHost = '127.0.0.1';
     private $LoaclUser = 'root';
-    private $LocalPass = 'root';
-    private $LocalBase = 'da';
+    private $LocalPass = 'zhangya@4548';
+    private $LocalBase = 'dahuzhi';
     private $LocalCode = 'UTF8';
     private $PreFix;
     private $Conn;
