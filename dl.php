@@ -35,7 +35,7 @@ if ($name)
     $tmp = substr(strrchr($name, '.'), 1);
     if ($tmp === $houzui)
     {
-        $filepath = $path . DIRECTORY_SEPARATOR . $name;
+        $filepath = $path.DIRECTORY_SEPARATOR . $name;
     }
 }
 
@@ -99,26 +99,29 @@ if ($filepath)
         unlink($filepath);
         $res = $Conn ->Table('vod')-> Where('vod_id='.$updateId)->Edit(['isuse'=>2]);
     }
-}
 
-$vodRes = $Conn ->Table('vod')-> Where('isuse=3')->Order('vod_id asc')->Select();
-if (true === empty($vodRes['url'])) {
     //执行下一次下载
-    $vodRes = $Conn ->Table('vod')-> Where('isuse=0')->Order('vod_id asc')->Select();
-    if (false === empty($vodRes['url'])) {
+    $vodRes = $Conn ->Table('vod')-> Where('isuse=3')->Order('vod_id asc')->Select();
+    if (true === empty($vodRes['url'])) {
+        $vodRes = $Conn ->Table('vod')-> Where('isuse=0')->Order('vod_id asc')->Select();
+        if (false === empty($vodRes['url'])) {
 
-        $res = $Conn ->Table('vod')-> Where('vod_id='.$vodRes['vod_id'])->Edit(['isuse'=>3]);
+            $res = $Conn ->Table('vod')-> Where('vod_id='.$vodRes['vod_id'])->Edit(['isuse'=>3]);
 
-        $log = $path.DIRECTORY_SEPARATOR.'log.php';
-        exec("/usr/bin/youtube-dl -f 22 --proxy 'socks5://127.0.0.1:1080' ".$vodRes['url']." > ".$log." & echo $! ", $output);
-        phpLog('下载视频开始');
-        phpLog($output);
+            $log = $path.DIRECTORY_SEPARATOR.'log.php';
 
-        $res = $Conn ->Table('vod')-> Where('vod_id='.$vodRes['vod_id'])->Edit(['isuse'=>1]);
-        phpLog('下载视频完成');
-        phpLog($res);
+            exec("cd ". $path.DIRECTORY_SEPARATOR ."  &&  /usr/bin/youtube-dl -f 22 --proxy 'socks5://127.0.0.1:1080' ".$vodRes['url']." > ".$log." & echo $! ", $output);
+            phpLog('下载视频开始');
+            phpLog($output);
+
+            $res = $Conn ->Table('vod')-> Where('vod_id='.$vodRes['vod_id'])->Edit(['isuse'=>1]);
+            phpLog('下载视频完成');
+            phpLog($res);
+        }
     }
 }
+
+
 
 
 
