@@ -8,9 +8,38 @@ $path = __DIR__;
 
 require_once($path.DIRECTORY_SEPARATOR.'db.php');
 
+
+
+
+$res = listDir($path);
+var_dump($res);
+function listDir( $dir){
+    $return = array();
+    $d = dir($dir);
+    while(FALSE !== ($item = $d->read() ))
+    {
+        if('.' ==$item || '..'==$item)
+        {
+            continue;
+        }
+        $return[] = $item;
+        //if(is_file($dir . '/' .$item))
+        //{
+        //    $return[] = $item;
+        //}
+        //elseif(is_dir($dir . '/' .$item))
+        //{
+        //    $return[$item] =listDir($dir . '/' .$item);
+        //}
+    }
+    $d->close();
+    return $return;
+}
+die;
+
 exec("cd ". $path.DIRECTORY_SEPARATOR ."  &&  chown www:www  ".$path.DIRECTORY_SEPARATOR."*", $output);
 phpLog('修改文件权限完成');
-phpLog($res);
+phpLog($output);
 
 //打开文件句柄
 $handler = opendir($path);
