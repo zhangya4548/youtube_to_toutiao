@@ -53,10 +53,10 @@ if ($filepath)
 
     //获取上传地址
     list($uploadUrl, $res, $uploadId) = getUploadUrl();
-    var_dump('获取饰品地址完成');
-    var_dump($uploadUrl);
-    var_dump($filepath);
-    die;
+    phpLog('获取饰品地址完成');
+    phpLog($uploadUrl);
+    phpLog($filepath);
+
     //上传视频
     $res = uploadMp4($filepath, $uploadUrl);
     $res = json_decode($res, true);
