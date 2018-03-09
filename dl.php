@@ -38,7 +38,7 @@ $filepath = '';
 //检测文件是否下载完
 if ($name)
 {
-    //var_dump($name);
+    var_dump($name);die;
     $tmp = substr(strrchr($name, '.'), 1);
     if ($tmp === $houzui)
     {
