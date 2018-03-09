@@ -17,7 +17,7 @@ $url = $_POST['url'] ?? '';
 if($url){
 
     $arr = [
-        'name' => addslashes($name),
+        'name' => addslashes(substr($name,0,30)),
         'url' => addslashes($url),
     ];
 
@@ -50,3 +50,5 @@ function phpLog($str)
     }
     file_put_contents('./log.php', $time . $str, FILE_APPEND);
 }
+
+
