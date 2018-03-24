@@ -5,6 +5,7 @@
  * Date: 2018/3/7
  * Time: 14:13
  */
+header('Access-Control-Allow-Origin: *');
 
 //当前目录
 $path = __DIR__;
@@ -29,7 +30,7 @@ if($url){
     phpLog('添加视频完成');
     phpLog($res);
 
-    die('添加完成');
+    exit(json_encode(['msg'=>'添加完成']));
 }
 
 
