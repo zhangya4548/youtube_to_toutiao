@@ -18,7 +18,7 @@ $url = $_POST['url'] ?? '';
 if($url){
 
     $arr = [
-        'name' => addslashes(substr($name,0,30)),
+        'name' => addslashes($name),
         'url' => addslashes($url),
     ];
 
