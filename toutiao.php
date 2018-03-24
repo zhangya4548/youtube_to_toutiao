@@ -9,7 +9,7 @@ $Conn = new Mysql();
 
 
 //应用key
-$vodRes = $Conn ->Table('vod_toutiao_key')-> Where('id=1')->Select();
+$vodRes = $Conn ->Table('vod_zmy_key')-> Where('id=1')->Select();
 $clientKey = $vodRes['client_key'] ?? '';
 $clientSecret = $vodRes['client_secret'] ?? '';
 
@@ -31,7 +31,7 @@ if(false === empty($_GET)){
         }
 
         //修改信息
-        $res = $Conn ->Table('vod_toutiao_key')
+        $res = $Conn ->Table('vod_zmy_key')
                      -> Where('id=1')
                      ->Edit(['access_token'=>$res['data']['access_token'], 'expires_in'=>date('Y-m-d H:i:s',$res['data']['expires_in'])]);
 
