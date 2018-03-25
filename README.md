@@ -14,7 +14,7 @@
 ```
 
 
-4.添加计划任务 [每10分钟执行]
+4.添加计划任务 [每10分钟执行1]
 ```$xslt
 */10 * * * * /usr/bin/php  /home/wwwroot/zgqdl.3ddysj.com/youtube_to_toutiao/add_pinlun.php > /dev/null 2>&1 &
 ```
