@@ -10,7 +10,13 @@
 
 3.添加计划任务 [每小时执行]
 ```$xslt
-0 * * * *   /usr/bin/php  /home/wwwroot/zgq.hanhanjun.com/dl.php > /dev/null 2>&1 &
+0 * * * *   /usr/bin/php  /home/wwwroot/zgqdl.hanhanjun.com/dl.php > /dev/null 2>&1 &
+```
+
+
+4.添加计划任务 [每10分钟执行]
+```$xslt
+*/10 * * * * /usr/bin/php  /home/wwwroot/zgqdl.3ddysj.com/youtube_to_toutiao/add_pinlun.php > /dev/null 2>&1 &
 ```
 
 4.登录头条后台: 内容管理->草稿中修改信息发布
