@@ -9,7 +9,7 @@ $Conn = new Mysql();
 
 //应用key
 
-$vodRes = $Conn ->Table('vod_toutiao_key')-> Where('id=1')->Select();
+$vodRes = $Conn ->Table('vod_xcc_key')-> Where('id=1')->Select();
 $clientKey = $vodRes['client_key'] ?? '';
 $clientSecret = $vodRes['client_secret'] ?? '';
 $redirectUri = $vodRes['redirect_uri'] ?? ''; //回调地址

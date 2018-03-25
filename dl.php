@@ -65,13 +65,13 @@ if ($filepath)
 
 
     //获取视频信息
-    $vodRes = $Conn ->Table('vod')-> Where('isuse=1')->Order('vod_id asc')->Select();
+    $vodRes = $Conn ->Table('vod_xcc')-> Where('isuse=1')->Order('vod_id asc')->Select();
     $updateId = $vodRes['vod_id'] ?? 0;
     $fabuName = $vodRes['name'] ?? '新视频待命名';
 
 
     //发布视频文章
-    $vodRes = $Conn ->Table('vod_toutiao_key')-> Where('id=1')->Select();
+    $vodRes = $Conn ->Table('vod_xcc_key')-> Where('id=1')->Select();
     $clientKey = $vodRes['client_key'] ?? '';
     $clientSecret = $vodRes['client_secret'] ?? '';
     $token        = $vodRes['access_token'] ?? '';
@@ -104,16 +104,16 @@ if ($filepath)
     //删除文件
     if(false === empty($res['article_id'])){
         unlink($filepath);
-        $res = $Conn ->Table('vod')-> Where('vod_id='.$updateId)->Edit(['isuse'=>2]);
+        $res = $Conn ->Table('vod_xcc')-> Where('vod_id='.$updateId)->Edit(['isuse'=>2]);
     }
 
     //执行下一次下载
-    $vodRes = $Conn ->Table('vod')-> Where('isuse=3')->Order('vod_id asc')->Select();
+    $vodRes = $Conn ->Table('vod_xcc')-> Where('isuse=3')->Order('vod_id asc')->Select();
     if (true === empty($vodRes['url'])) {
-        $vodRes = $Conn ->Table('vod')-> Where('isuse=0')->Order('vod_id asc')->Select();
+        $vodRes = $Conn ->Table('vod_xcc')-> Where('isuse=0')->Order('vod_id asc')->Select();
         if (false === empty($vodRes['url'])) {
 
-            $res = $Conn ->Table('vod')-> Where('vod_id='.$vodRes['vod_id'])->Edit(['isuse'=>3]);
+            $res = $Conn ->Table('vod_xcc')-> Where('vod_id='.$vodRes['vod_id'])->Edit(['isuse'=>3]);
 
             $log = $path.DIRECTORY_SEPARATOR.'log.php';
 
@@ -121,7 +121,7 @@ if ($filepath)
             phpLog('下载视频开始');
             phpLog($output);
 
-            $res = $Conn ->Table('vod')-> Where('vod_id='.$vodRes['vod_id'])->Edit(['isuse'=>1]);
+            $res = $Conn ->Table('vod_xcc')-> Where('vod_id='.$vodRes['vod_id'])->Edit(['isuse'=>1]);
             phpLog('下载视频完成');
             phpLog($res);
         }
@@ -212,7 +212,7 @@ function getUploadUrl(): array
 
     $Conn = new Mysql();
     //应用key
-    $vodRes = $Conn ->Table('vod_toutiao_key')-> Where('id=1')->Select();
+    $vodRes = $Conn ->Table('vod_xcc_key')-> Where('id=1')->Select();
     $clientKey = $vodRes['client_key'] ?? '';
     $clientSecret = $vodRes['client_secret'] ?? '';
     $token        = $vodRes['access_token'] ?? '';

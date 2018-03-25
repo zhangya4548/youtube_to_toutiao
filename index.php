@@ -26,7 +26,7 @@ if($url){
     phpLog($arr);
 
     $Conn = new Mysql();
-    $res = $Conn ->Table('vod')->Into($arr);
+    $res = $Conn ->Table('vod_xcc')->Into($arr);
     phpLog('添加视频完成');
     phpLog($res);
 
