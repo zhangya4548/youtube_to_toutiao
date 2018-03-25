@@ -10,7 +10,7 @@
 
 3.添加计划任务 [每小时执行]
 ```$xslt
-0 * * * *   /usr/bin/php  /home/wwwroot/xcc.hanhanjun.com/dl.php > /dev/null 2>&1 &
+0 * * * *   /usr/bin/php  /home/wwwroot/xcc.3ddysj.com/youtube_to_toutiao/dl.php > /dev/null 2>&1 &
 ```
 
 
